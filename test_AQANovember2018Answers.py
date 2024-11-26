@@ -73,7 +73,7 @@ class TestWordpressLogin:
         main_page_url = "https://smoothmaths.co.uk/gcse/aqa/november-2018-maths-past-papers/"
         self.driver.get(main_page_url)
 
-        expected_answers_urls = [  # Fixed variable name
+        expected_answers_urls = [
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-foundation-paper-1-mark-scheme.pdf/",
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-Foundation-Paper-2-marks-scheme.pdf/",
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-foundation-paper-3-mark-scheme-nov-2018.pdf/",
@@ -91,7 +91,6 @@ class TestWordpressLogin:
             (By.CSS_SELECTOR, ".et_pb_blurb_11.et_pb_blurb .et_pb_module_header a")
         ]
 
-
         results = []
 
         # Test each Answer Paper link
@@ -100,18 +99,21 @@ class TestWordpressLogin:
                 # Scroll to the element and get the clickable element
                 answer_paper_link = self.scroll_to_element(by, value)
                 answer_paper_link.click()
-                
+
+                # Switch to the newly opened tab
+                WebDriverWait(self.driver, 5).until(lambda d: len(d.window_handles) > 1)
+                self.driver.switch_to.window(self.driver.window_handles[1])
+
                 # Verify the current URL
-                WebDriverWait(self.driver, 15).until(EC.url_to_be(expected_answers_urls[i]))  # Fixed variable name
-                
-                # Assert the URL is correct, if not, raise an AssertionError
+                WebDriverWait(self.driver, 15).until(EC.url_to_be(expected_answers_urls[i]))
+
+                # Assert the URL is correct
                 assert self.driver.current_url == expected_answers_urls[i], f"Expected URL to be {expected_answers_urls[i]}, but got {self.driver.current_url}"
-                
-                # Wait 5 seconds before taking a screenshot
-                time.sleep(5)
+
+                # Take a screenshot
                 screenshot_path = f"screenshots/AQANovember2018_Answer_Paper_{i+1}.png"
                 self.driver.save_screenshot(screenshot_path)
-                
+
                 # Log success status
                 results.append({
                     "Test Case": f"Answer Paper {i+1} Link Verification",
@@ -121,11 +123,15 @@ class TestWordpressLogin:
                     "Screenshot": screenshot_path
                 })
 
+                # Close the current tab and switch back to the main tab
+                self.driver.close()
+                self.driver.switch_to.window(self.driver.window_handles[0])
+
             except Exception as e:
                 # Capture any errors and log failure status
                 screenshot_path = f"screenshots/AQANovember2018_error_Answer_Paper_{i+1}.png"
                 self.driver.save_screenshot(screenshot_path)
-                
+
                 results.append({
                     "Test Case": f"Answer Paper {i+1} Link Verification",
                     "Status": f"Fail: {str(e)}",
@@ -134,10 +140,14 @@ class TestWordpressLogin:
                     "Screenshot": screenshot_path
                 })
 
+                # Ensure the tab is closed and return to the main tab
+                if len(self.driver.window_handles) > 1:
+                    self.driver.close()
+                    self.driver.switch_to.window(self.driver.window_handles[0])
+
             # Go back to the main page for the next link
             self.driver.get(main_page_url)
             time.sleep(3)
-
 
         # Log results to CSV
         self.append_to_csv(results)
