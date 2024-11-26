@@ -104,13 +104,17 @@ class TestWordpressLogin:
                 WebDriverWait(self.driver, 5).until(lambda d: len(d.window_handles) > 1)
                 self.driver.switch_to.window(self.driver.window_handles[1])
 
+                # Wait for the page to fully load
+                time.sleep(5)  # Adjust the sleep time if necessary
+
                 # Verify the current URL
                 WebDriverWait(self.driver, 15).until(EC.url_to_be(expected_answers_urls[i]))
 
                 # Assert the URL is correct
                 assert self.driver.current_url == expected_answers_urls[i], f"Expected URL to be {expected_answers_urls[i]}, but got {self.driver.current_url}"
 
-                # Take a screenshot
+                # Wait additional time for rendering and then take a screenshot
+                time.sleep(3)  # Extra wait for rendering
                 screenshot_path = f"screenshots/AQANovember2018_Answer_Paper_{i+1}.png"
                 self.driver.save_screenshot(screenshot_path)
 
