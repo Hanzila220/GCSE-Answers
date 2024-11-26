@@ -125,7 +125,7 @@ class TestWordpressLogin:
 
             except Exception as e:
                 # Capture any errors and log failure status
-                screenshot_path = f"screenshots/EdexcelJune2014MarkScheme_errori+1}.png"
+                screenshot_path = f"screenshots/EdexcelJune2014MarkScheme_error_{i+1}.png"
                 self.driver.save_screenshot(screenshot_path)
 
                 results.append({
