@@ -24,8 +24,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium pytest webdriver-manager pandas
 
-      - name: Run AQA November 2018 tests
-        run: pytest test_AQANovember2018Answers.py --tb=short --junitxml=results.xml
+      # - name: Run AQA November 2018 tests
+      #   run: pytest test_AQANovember2018Answers.py --tb=short --junitxml=results.xml
+
+      - name: Run AQA Junr 2018 tests
+        run: pytest test_AQAJune2018Answers.py --tb=short --junitxml=results.xml
             
       # Upload screenshots
       - name: Upload screenshots
