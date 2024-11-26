@@ -24,35 +24,38 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium pytest webdriver-manager pandas
 
-      # - name: Run AQA November 2018 tests
-      #   run: pytest test_AQANovember2018Answers.py --tb=short --junitxml=results.xml
+      - name: Run AQA November 2018 tests
+        run: pytest test_AQANovember2018Answers.py --tb=short --junitxml=results.xml
 
-      # - name: Run AQA June 2018 tests
-      #   run: pytest test_AQAJune2018Answers.py --tb=short --junitxml=results.xml
+      - name: Run AQA June 2018 tests
+        run: pytest test_AQAJune2018Answers.py --tb=short --junitxml=results.xml
 
-      # - name: Run AQA November 2017 tests
-      #   run: pytest test_AQANovember2017.py --tb=short --junitxml=results.xml
+      - name: Run AQA November 2017 tests
+        run: pytest test_AQANovember2017.py --tb=short --junitxml=results.xml
 
-      # - name: Run AQA June 2017 tests
-      #   run: pytest test_AQAJune2017.py  --tb=short --junitxml=results.xml
+      - name: Run AQA June 2017 tests
+        run: pytest test_AQAJune2017.py  --tb=short --junitxml=results.xml
 
-      # - name: Run AQA Specimen tests
-      #   run: pytest test_AQASpecimenAnswers.py  --tb=short --junitxml=results.xml
+      - name: Run AQA Specimen tests
+        run: pytest test_AQASpecimenAnswers.py  --tb=short --junitxml=results.xml
 
-      # - name: Run Edexcel November 2018 Mark scheme tests
-      #   run: pytest test_EdexcelNovember2018.py  --tb=short --junitxml=results.xml
+      - name: Run Edexcel November 2018 Mark scheme tests
+        run: pytest test_EdexcelNovember2018.py  --tb=short --junitxml=results.xml
 
-      # - name: Run Edexcel November 2018 Model Answers tests
-      #   run: pytest test_EdexcelNovember2018ModelAnswers.py  --tb=short --junitxml=results.xml
+      - name: Run Edexcel November 2018 Model Answers tests
+        run: pytest test_EdexcelNovember2018ModelAnswers.py  --tb=short --junitxml=results.xml
 
-      # - name: Run Edexcel November 2017 Model Answers tests
-      #   run: pytest test_EdexcelNovember2017ModelAnswers.py  --tb=short --junitxml=results.xml
+      - name: Run Edexcel November 2017 Model Answers tests
+        run: pytest test_EdexcelNovember2017ModelAnswers.py  --tb=short --junitxml=results.xml
 
-      # - name: Run Edexcel November 2017 Mark scheme tests
-      #   run: pytest test_EdexcelNovember2017Marksscheme.py  --tb=short --junitxml=results.xml
+      - name: Run Edexcel November 2017 Mark scheme tests
+        run: pytest test_EdexcelNovember2017Marksscheme.py  --tb=short --junitxml=results.xml
 
       - name: Run Edexcel June 2017 Mark scheme tests
         run: pytest test_EdexcelJune2017Markschemes.py  --tb=short --junitxml=results.xml
+
+      - name: Run Edexcel June 2017 Model answers tests
+        run: pytest test_EdexcelJune2017ModelAnswers.py  --tb=short --junitxml=results.xml
             
       # Upload screenshots
       - name: Upload screenshots
