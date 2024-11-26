@@ -74,12 +74,12 @@ class TestWordpressLogin:
         self.driver.get(main_page_url)
 
         expected_answers_urls = [
-            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-foundation-paper-1-mark-scheme.pdf/",
-            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-Foundation-Paper-2-marks-scheme.pdf/",
-            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-foundation-paper-3-mark-scheme-nov-2018.pdf/",
-            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-nov-2018-paper-1-mark-scheme.pdf/",
-            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-Higher-paper-2-nov-2018-mark-scheme.pdf/",
-            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-Higher-paper-3-marks-scheme-nov-2018.pdf/"
+            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-foundation-paper-1-mark-scheme.pdf",
+            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-Foundation-Paper-2-marks-scheme.pdf",
+            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-foundation-paper-3-mark-scheme-nov-2018.pdf",
+            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-nov-2018-paper-1-mark-scheme.pdf",
+            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-Higher-paper-2-nov-2018-mark-scheme.pdf",
+            "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-Higher-paper-3-marks-scheme-nov-2018.pdf"
         ]
 
         answer_paper_locators = [
