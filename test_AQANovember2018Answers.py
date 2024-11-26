@@ -73,7 +73,7 @@ class TestWordpressLogin:
         main_page_url = "https://smoothmaths.co.uk/gcse/aqa/november-2018-maths-past-papers/"
         self.driver.get(main_page_url)
 
-        expected_answers_urls = [
+        expected_answers_urls = [  # Fixed variable name
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-foundation-paper-1-mark-scheme.pdf/",
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-Foundation-Paper-2-marks-scheme.pdf/",
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/AQA-foundation-paper-3-mark-scheme-nov-2018.pdf/",
@@ -102,10 +102,10 @@ class TestWordpressLogin:
                 answer_paper_link.click()
                 
                 # Verify the current URL
-                WebDriverWait(self.driver, 15).until(EC.url_to_be(expected_answer_urls[i]))
+                WebDriverWait(self.driver, 15).until(EC.url_to_be(expected_answers_urls[i]))  # Fixed variable name
                 
                 # Assert the URL is correct, if not, raise an AssertionError
-                assert self.driver.current_url == expected_answer_urls[i], f"Expected URL to be {expected_answer_urls[i]}, but got {self.driver.current_url}"
+                assert self.driver.current_url == expected_answers_urls[i], f"Expected URL to be {expected_answers_urls[i]}, but got {self.driver.current_url}"
                 
                 # Wait 5 seconds before taking a screenshot
                 time.sleep(5)
@@ -116,7 +116,7 @@ class TestWordpressLogin:
                 results.append({
                     "Test Case": f"Answer Paper {i+1} Link Verification",
                     "Status": "Pass",
-                    "Expected URL": expected_answer_urls[i],
+                    "Expected URL": expected_answers_urls[i],
                     "Actual URL": self.driver.current_url,
                     "Screenshot": screenshot_path
                 })
@@ -129,7 +129,7 @@ class TestWordpressLogin:
                 results.append({
                     "Test Case": f"Answer Paper {i+1} Link Verification",
                     "Status": f"Fail: {str(e)}",
-                    "Expected URL": expected_answer_urls[i],
+                    "Expected URL": expected_answers_urls[i],
                     "Actual URL": self.driver.current_url if self.driver.current_url else "N/A",
                     "Screenshot": screenshot_path
                 })
