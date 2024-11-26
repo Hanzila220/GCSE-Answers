@@ -30,8 +30,11 @@ jobs:
       # - name: Run AQA June 2018 tests
       #   run: pytest test_AQAJune2018Answers.py --tb=short --junitxml=results.xml
 
-      - name: Run AQA November 2017 tests
-        run: pytest test_AQANovember2017.py --tb=short --junitxml=results.xml
+      # - name: Run AQA November 2017 tests
+      #   run: pytest test_AQANovember2017.py --tb=short --junitxml=results.xml
+
+      - name: Run AQA June 2017 tests
+        run: pytest test_AQAJune2017.py  --tb=short --junitxml=results.xml
             
       # Upload screenshots
       - name: Upload screenshots
