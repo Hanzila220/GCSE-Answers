@@ -115,7 +115,7 @@ class TestWordpressLogin:
 
                 # Wait additional time for rendering and then take a screenshot
                 time.sleep(3)  # Extra wait for rendering
-                screenshot_path = f"screenshots/OCRNovember2017MarkScheme_{i+1}.png"
+                screenshot_path = f"screenshots/OCRJune2017MarkScheme_{i+1}.png"
                 self.driver.save_screenshot(screenshot_path)
 
                 # Log success status
@@ -133,7 +133,7 @@ class TestWordpressLogin:
 
             except Exception as e:
                 # Capture any errors and log failure status
-                screenshot_path = f"screenshots/OCRNovember2017MarkScheme_error_{i+1}.png"
+                screenshot_path = f"screenshots/OCRJune2017MarkScheme_error_{i+1}.png"
                 self.driver.save_screenshot(screenshot_path)
 
                 results.append({
