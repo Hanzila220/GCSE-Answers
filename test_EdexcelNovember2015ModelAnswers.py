@@ -84,7 +84,7 @@ class TestWordpressLogin:
         
         # Expected URLs for each answer paper
         expected_answer_urls = [
-            "https://smoothmaths.co.uk/gcse/edexcel/paper-1-november-2015-model-answers"
+            "https://smoothmaths.co.uk/gcse/edexcel/paper-1-november-2015-model-answers/"
         ]
         
 
