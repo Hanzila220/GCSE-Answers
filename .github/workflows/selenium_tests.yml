@@ -128,6 +128,9 @@ jobs:
 
       - name: Run Edexcel Specimen Model Answer tests
         run: pytest test_EdexcelSpecimenModelAnswers.py  --tb=short --junitxml=results.xml  
+
+      - name: Run OCR November 2018 Mark Scheme tests
+        run: pytest test_OCRNovember2018MarkScheme.py  --tb=short --junitxml=results.xml  
             
       # Upload screenshots
       - name: Upload screenshots
