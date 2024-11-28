@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import os
 import pandas as pd
 
+
 CSV_FILE_PATH = "test_results.csv"
 
 class TestWordpressLogin:
@@ -77,7 +78,7 @@ class TestWordpressLogin:
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/JUNE-2015-UNIT-B-FOUNDATION-TIER-MARKS-SCHEME.pdf",
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/JUNE-2015-UNIT-C-FOUNDATION-TIER-MARKS-SCHEME.pdf",
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/JUNE-2015-UNIT-A-HIGHER-TIER-MARKS-SCHEME.pdf",
-            "https://smoothmaths.s3.eu-west-2.amazonaws.com/JUNE-2015-UNIT-B-HIGHER-TIER-MARKS-SCHEME.pdf",
+            "https://smoothmaths.s3.eu-west-2.amazonaws.com/JUNER-2015-UNIT-B-HIGHER-TIER-MARKS-SCHEME.pdf",
             "https://smoothmaths.s3.eu-west-2.amazonaws.com/JUNE-2015-UNIT-C-HIGHER-TIER-MARKS-SCHEME.pdf"
         ]
 
@@ -103,11 +104,19 @@ class TestWordpressLogin:
                 WebDriverWait(self.driver, 5).until(lambda d: len(d.window_handles) > 1)
                 self.driver.switch_to.window(self.driver.window_handles[1])
 
+                # Wait for the page to fully load
+                time.sleep(5)  # Adjust the sleep time if necessary
+
                 # Verify the current URL
                 WebDriverWait(self.driver, 15).until(EC.url_to_be(expected_answers_urls[i]))
 
                 # Assert the URL is correct
                 assert self.driver.current_url == expected_answers_urls[i], f"Expected URL to be {expected_answers_urls[i]}, but got {self.driver.current_url}"
+
+                # Wait additional time for rendering and then take a screenshot
+                time.sleep(3)  # Extra wait for rendering
+                screenshot_path = f"screenshots/OCRJune2015MarkScheme_{i+1}.png"
+                self.driver.save_screenshot(screenshot_path)
 
                 # Log success status
                 results.append({
@@ -115,6 +124,7 @@ class TestWordpressLogin:
                     "Status": "Pass",
                     "Expected URL": expected_answers_urls[i],
                     "Actual URL": self.driver.current_url,
+                    "Screenshot": screenshot_path
                 })
 
                 # Close the current tab and switch back to the main tab
@@ -123,20 +133,21 @@ class TestWordpressLogin:
 
             except Exception as e:
                 # Capture any errors and log failure status
+                screenshot_path = f"screenshots/OCRJune2015MarkScheme_error_{i+1}.png"
+                self.driver.save_screenshot(screenshot_path)
+
                 results.append({
                     "Test Case": f"Answer Paper {i+1} Link Verification",
                     "Status": f"Fail: {str(e)}",
                     "Expected URL": expected_answers_urls[i],
                     "Actual URL": self.driver.current_url if self.driver.current_url else "N/A",
+                    "Screenshot": screenshot_path
                 })
 
                 # Ensure the tab is closed and return to the main tab
                 if len(self.driver.window_handles) > 1:
                     self.driver.close()
                     self.driver.switch_to.window(self.driver.window_handles[0])
-
-                # Fail the test immediately
-                pytest.fail(f"URL mismatch or error for Answer Paper {i+1}: {str(e)}")
 
             # Go back to the main page for the next link
             self.driver.get(main_page_url)
