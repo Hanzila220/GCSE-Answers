@@ -156,8 +156,11 @@ jobs:
       # - name: Run OCR June 2013 Mark Scheme tests
       #   run: pytest test_OCRJune2013Markscheme.py  --tb=short --junitxml=results.xml 
 
-      - name: Run OCR November 2013 Mark Scheme tests
-        run: pytest test_OCRNovember2013Markscheme.py  --tb=short --junitxml=results.xml 
+      # - name: Run OCR November 2013 Mark Scheme tests
+      #   run: pytest test_OCRNovember2013Markscheme.py  --tb=short --junitxml=results.xml 
+
+      - name: Run OCR November 2014 Mark Scheme tests
+        run: pytest test_OCRNovember2014Markscheme.py  --tb=short --junitxml=results.xml 
             
       # Upload screenshots
       - name: Upload screenshots
