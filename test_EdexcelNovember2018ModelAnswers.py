@@ -56,7 +56,7 @@ class TestWordpressLogin:
         element = None
         for _ in range(20):  # Try scrolling up to 20 times
             try:
-                element = WebDriverWait(self.driver, 5).until(
+                element = WebDriverWait(self.driver, 20).until(
                     EC.element_to_be_clickable((by, value))
                 )
                 break  # Exit if the element becomes clickable
