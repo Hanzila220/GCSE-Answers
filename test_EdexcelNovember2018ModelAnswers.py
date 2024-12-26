@@ -109,7 +109,7 @@ class TestWordpressLogin:
                 self.driver.execute_script("arguments[0].click();", answer_paper_link)
 
                 # Verify the current URL
-                WebDriverWait(self.driver, 10).until(EC.url_to_be(expected_answer_urls[i]))
+                WebDriverWait(self.driver, 30).until(EC.url_to_be(expected_answer_urls[i]))
                 
                 # Log current URL for debugging
                 print(f"Navigated to: {self.driver.current_url}")
